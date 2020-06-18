@@ -3,24 +3,28 @@
 
 <head>
     <title>網頁動態的顯示時間</title>
-    <script>
-        function ShowTime() {
-            //建立出當下時間的Date物件
-            let NowDate = new Date();
-            //取出星期
-            let d = NowDate.getDay();
-            //設定星期的中文
-            let dayNames = new Array("星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六");
-            //找到 ID 是 showbox 的 div 並把值設成 目前時間 + 系統的地區設定導出的日期時間字串 + 設定好的星期中文說明
-            document.querySelector('#showbox').textContent = '目前時間' + NowDate.toLocaleString()+ '（' + dayNames[d] + '）';
-            //每一秒執行 function ShowTime
-            setTimeout('ShowTime()', 1000);
-        }
-    </Script>
+    
 </head>
 
-<body onload="ShowTime()">
+<body>  
     <div id="showbox"></div>
+    <script>
+        function showTime() {
+            //建立出當下時間的Date物件
+            const nowDate = new Date();
+            //取出星期
+            const d = nowDate.getDay();
+            //設定星期的中文
+            const dayNames = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
+            //找到 ID 是 showbox 的 div 並把值設成 目前時間 + 系統的地區設定導出的日期時間字串 + 設定好的星期中文說明
+            document.querySelector('#showbox').textContent = `目前時間 ${nowDate.toLocaleString()} (${dayNames[d]}）`;
+            //每一秒執行 function ShowTime
+            setTimeout(() => {
+                showTime();
+            }, 1000);
+        }
+        window.addEventListener('load',showTime);
+    </Script>
 </body>
 
 </html>
